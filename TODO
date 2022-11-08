@@ -1,0 +1,4 @@
+todo: clang-tidy and clang-format bazel rules
+todo: add bazel support for haskell solutions
+todo: hformat and hlint bazel rules
+todo: generate benchmarks using bazel

@@ -1,0 +1,8 @@
+build -c opt --macos_sdk_version=13.0
+
+build --cxxopt='-std=c++14'
+build --cxxopt='-O3'
+build --cxxopt='-Wall'
+build --cxxopt='-Wextra'
+build --cxxopt='-Werror'
+build --cxxopt='-Wpedantic'
