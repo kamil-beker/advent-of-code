@@ -80,7 +80,7 @@ Pseudo code: ::
       Iterate over inventories.
       Sum its elements.
       Push sum to array.
-      Sort array of sums in descending order.
+      Partially sort array of sums in descending order.
       Sum three top-most elements.
       
 Which translates to following code:
@@ -97,7 +97,14 @@ Which translates to following code:
       sums.push_back(sum);
     }
 
-    std::sort(sums.begin(), sums.end(), std::greater<std::int32_t>());  // sort in descending order
+    // previously I've sorted the whole array (std::sort), but as it's not needed
+    // we can rely on sorting the array partially using std::nth_element.
+    //
+    // ref: https://en.cppreference.com/w/cpp/algorithm/nth_element
+
+    std::nth_element(sums.begin(), sums.begin() + 3, sums.end(),
+                    std::greater<std::int32_t>());
+
     max = std::accumulate(sums.begin(), sums.begin() + 3, 0);           // sum three top-most elements
 
     return max;                                                         // answer

@@ -1,5 +1,6 @@
 #include "day_01.h"
 
+#include <algorithm>
 #include <functional>
 #include <numeric>
 
@@ -28,7 +29,9 @@ std::int64_t Part02(std::vector<std::vector<std::int32_t>> data) {
     sums.push_back(sum);
   }
 
-  std::sort(sums.begin(), sums.end(), std::greater<std::int32_t>());
+  std::nth_element(sums.begin(), sums.begin() + 3, sums.end(),
+                   std::greater<std::int32_t>());
+
   max = std::accumulate(sums.begin(), sums.begin() + 3, 0);
 
   return max;
