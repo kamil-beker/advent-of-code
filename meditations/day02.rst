@@ -66,7 +66,7 @@ Which translates to the following code:
     const std::map<std::string, std::int32_t> figure_value_map = {
         {{"X", kRockValue}, {"Y", kPaperValue}, {"Z", kScissorsValue}}};
 
-    // Function used to calculate value from given game round.3
+    // Function used to calculate value from given game round.
     std::int64_t EvaluateStrategy(std::string player_a, std::string player_b) {
         std::int64_t value = kLooseValue;       // If none of moves is draw or win, we loose.
 
