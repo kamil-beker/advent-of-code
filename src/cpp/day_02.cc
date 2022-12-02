@@ -48,7 +48,7 @@ std::int64_t EvaluateStrategy(std::string player_a, std::string player_b) {
 }
 
 std::int64_t EvaluateStrategyAsIndicated(std::string player_a,
-                                         std::string player_b) {
+                                         std::string player_b_outcome) {
   const std::vector<std::string> player_move_set = {"X", "Y", "Z"};
   std::int64_t value = 0;
 
@@ -68,15 +68,15 @@ std::int64_t EvaluateStrategyAsIndicated(std::string player_a,
     return result;
   };
 
-  if (player_b == "X" /* loose */) {
+  if (player_b_outcome == "X" /* loose */) {
     value = find_indicated_value(kLooseValue);
   }
 
-  if (player_b == "Y" /* draw */) {
+  if (player_b_outcome == "Y" /* draw */) {
     value = find_indicated_value(kDrawValue);
   }
 
-  if (player_b == "Z" /* win */) {
+  if (player_b_outcome == "Z" /* win */) {
     value = find_indicated_value(kWinValue);
   }
 
@@ -96,6 +96,7 @@ std::int64_t Part01(
 
   return total_points;
 }
+
 std::int64_t Part02(
     const std::vector<std::pair<std::string, std::string>>& data) {
   const auto total_points = std::accumulate(
