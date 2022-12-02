@@ -32,6 +32,8 @@ Therefore, summary of points for our previous example would be as follows: ::
     B X <-- paper    vs. rock     (1 point)
     C Z <-- scissors vs. scissors (6 points)
 
+    Total: 15 points
+
 We could translate this to the following algorithm: ::
 
     For each game round:
@@ -109,6 +111,14 @@ Our example series of game rounds would now look like this: ::
     A Y <-- rock     vs. rock (Y -> draw)
     B X <-- paper    vs. rock (X -> losing)
     C Z <-- scissors vs. rock (Z -> winning)
+
+With following summary of points:
+
+    A Y <-- rock     vs. rock (4 points)
+    B X <-- paper    vs. rock (1 points)
+    C Z <-- scissors vs. rock (7 points)
+
+    Total: 12 points
 
 Our goal for this part, is to find which figure we should play in order to obtain 
 suggested game outcome.
