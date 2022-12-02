@@ -112,7 +112,7 @@ Our example series of game rounds would now look like this: ::
     B X <-- paper    vs. rock (X -> losing)
     C Z <-- scissors vs. rock (Z -> winning)
 
-With following summary of points:
+With following summary of points: ::
 
     A Y <-- rock     vs. rock (4 points)
     B X <-- paper    vs. rock (1 points)
