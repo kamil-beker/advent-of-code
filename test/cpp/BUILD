@@ -27,3 +27,15 @@ cc_test(
         "@googletest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "test_day_03",
+    srcs = ["test_day_03.cc"],
+    data = ["//data:day_03"],
+    deps = [
+        ":common",
+        "//src/cpp:day_03",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
