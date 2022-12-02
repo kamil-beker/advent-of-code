@@ -7,7 +7,7 @@
 namespace aoc2022 {
 namespace day01 {
 
-std::int64_t Part01(std::vector<std::vector<std::int32_t>> data) {
+std::int64_t Part01(const std::vector<std::vector<std::int32_t>>& data) {
   std::int64_t max = 0;
 
   for (const auto& i : data) {
@@ -20,7 +20,7 @@ std::int64_t Part01(std::vector<std::vector<std::int32_t>> data) {
   return max;
 }
 
-std::int64_t Part02(std::vector<std::vector<std::int32_t>> data) {
+std::int64_t Part02(const std::vector<std::vector<std::int32_t>>& data) {
   std::int64_t max = 0;
   std::vector<std::int32_t> sums;
 

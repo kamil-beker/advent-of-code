@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <vector>
 
 #include "common.h"
 #include "src/cpp/day_02.h"
@@ -12,10 +11,23 @@ struct Day02Test : Test {
   // void TearDown() override {};
 };
 
-TEST_F(Day02Test, Day2Prepared) {
-  std::vector<std::vector<std::int32_t>> dummy_data{};
+TEST_F(Day02Test, Part01TestExample) {
+  const auto input = helpers::GetStrategyGuideFromFile("data/02-test.txt");
+  ASSERT_EQ(aoc2022::day02::Part01(input), 15);
+}
 
-  ASSERT_EQ(aoc2022::day02::Part01(dummy_data), 0);
-  ASSERT_EQ(aoc2022::day02::Part02(dummy_data), 0);
+TEST_F(Day02Test, Part01RealExample) {
+  const auto input = helpers::GetStrategyGuideFromFile("data/02.txt");
+  ASSERT_EQ(aoc2022::day02::Part01(input), 10404);
+}
+
+TEST_F(Day02Test, Part02TestExample) {
+  const auto input = helpers::GetStrategyGuideFromFile("data/02-test.txt");
+  ASSERT_EQ(aoc2022::day02::Part02(input), 12);
+}
+
+TEST_F(Day02Test, Part02RealExample) {
+  const auto input = helpers::GetStrategyGuideFromFile("data/02.txt");
+  ASSERT_EQ(aoc2022::day02::Part02(input), 10334);
 }
 }  // namespace

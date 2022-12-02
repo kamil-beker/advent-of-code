@@ -54,7 +54,7 @@ Which translates to the following code:
 .. code-block:: cpp
 
   // data is stored in two dimensional array in form of vector of vectors.
-  std::int64_t Part01(std::vector<std::vector<std::int32_t>> data) {
+  std::int64_t Part01(const std::vector<std::vector<std::int32_t>>& data) {
     std::int64_t max = 0;
 
     for (const auto& i : data) {                              // iterate over inventories
@@ -88,7 +88,7 @@ Which translates to following code:
 .. code-block:: cpp
 
   // data is stored in two dimensional array in form of vector of vectors.
-  std::int64_t Part02(std::vector<std::vector<std::int32_t>> data) {
+  std::int64_t Part02(const std::vector<std::vector<std::int32_t>>& data) {
     std::int64_t max = 0;
     std::vector<std::int32_t> sums;                                     // vector of sums
 
@@ -97,7 +97,7 @@ Which translates to following code:
       sums.push_back(sum);
     }
 
-    // previously I've sorted the whole array (std::sort), but as it's not needed
+    // previously I've sorted the whole array (using std::sort), but as it's not needed,
     // we can rely on sorting the array partially using std::nth_element.
     //
     // ref: https://en.cppreference.com/w/cpp/algorithm/nth_element
