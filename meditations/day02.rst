@@ -135,6 +135,7 @@ Pseudo code: ::
 Which translates to the following code:
 
 .. code-block:: cpp
+
     // Function used to calculate value from suggested outcome
     std::int64_t EvaluateStrategyAsIndicated(std::string player_a,
                                             std::string player_b_outcome) {
