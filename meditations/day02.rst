@@ -120,8 +120,7 @@ With following summary of points:
 
     Total: 12 points
 
-Our goal for this part, is to find which figure we should play in order to obtain 
-suggested game outcome.
+Our goal for this part, is to find out which figure we should play in order to obtain suggested game outcome.
 
 Pseudo code: ::
 
@@ -190,3 +189,4 @@ Which translates to the following code:
 
       return total_points;
     }
+
