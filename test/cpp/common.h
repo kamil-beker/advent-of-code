@@ -1,8 +1,11 @@
 #ifndef TEST_CPP_COMMON_H
 #define TEST_CPP_COMMON_H
 
+#include <algorithm>
+#include <cctype>
 #include <cstdint>
 #include <fstream>
+#include <iterator>
 #include <sstream>
 #include <string>
 #include <utility>
@@ -56,6 +59,52 @@ GetStrategyGuideFromFile(const char* path) {
   }
 
   return strategies;
+}
+
+inline std::vector<std::pair<std::string, std::string>> GetRucksacksFromFile(
+    const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+  std::vector<std::pair<std::string, std::string>> rucksacks;
+
+  while (std::getline(infile, line)) {
+    std::pair<std::string, std::string> compartments;
+    const auto size = line.size();
+    std::string first_compartment = line.substr(0, size / 2);
+    std::string second_compartment = line.substr((size / 2), size);
+
+    compartments = std::make_pair(first_compartment, second_compartment);
+
+    rucksacks.push_back(compartments);
+  }
+
+  return rucksacks;
+}
+
+inline std::vector<std::vector<std::string>> GetRucksackGroupsFromFile(
+    const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+
+  std::vector<std::vector<std::string>> groups;
+  std::vector<std::string> group;
+  auto index = 0;
+
+  while (std::getline(infile, line)) {
+    if ((index % 3 == 0) && (index != 0)) {
+      groups.push_back(group);
+      group.clear();
+    }
+
+    group.push_back(line);
+    index++;
+  }
+
+  if (!group.empty()) {
+    groups.push_back(group);
+  }
+
+  return groups;
 }
 
 }  // namespace helpers
