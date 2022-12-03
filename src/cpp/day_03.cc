@@ -8,8 +8,8 @@ namespace {
 constexpr auto kAsciiZeroValue = 48;
 constexpr auto kLowerCharModifier = 48;
 constexpr auto kUpperCharModifier = 10;
-
 }  // namespace
+
 std::int64_t CharToPriority(char ch) {
   auto priority = static_cast<int>(ch) - kAsciiZeroValue;
 
