@@ -5,6 +5,7 @@
 #include <cctype>
 #include <cstdint>
 #include <fstream>
+#include <iostream>
 #include <iterator>
 #include <sstream>
 #include <string>
@@ -12,6 +13,18 @@
 #include <vector>
 
 namespace helpers {
+
+inline std::vector<std::string> SplitOn(std::string str, char split_on) {
+  std::stringstream sstr(str);
+  std::string segment;
+  std::vector<std::string> tokens;
+
+  while (std::getline(sstr, segment, split_on)) {
+    tokens.push_back(segment);
+  };
+
+  return tokens;
+}
 
 inline std::vector<std::vector<int32_t>> GetSplittedValuesFromFile(
     const char* path) {
@@ -105,6 +118,28 @@ inline std::vector<std::vector<std::string>> GetRucksackGroupsFromFile(
   }
 
   return groups;
+}
+
+inline std::vector<std::pair<std::string, std::string>>
+GetSectionAssignmentsFromFile(const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+
+  std::vector<std::pair<std::string, std::string>> section_assignment_pairs;
+
+  while (std::getline(infile, line)) {
+    std::pair<std::string, std::string> assignment_pair;
+    const auto tokens = SplitOn(line, ',');
+
+    const auto first_section = tokens.at(0);
+    const auto second_section = tokens.at(1);
+
+    assignment_pair = std::make_pair(first_section, second_section);
+
+    section_assignment_pairs.push_back(assignment_pair);
+  }
+
+  return section_assignment_pairs;
 }
 
 }  // namespace helpers
