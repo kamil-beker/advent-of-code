@@ -33,3 +33,12 @@ filegroup(
     ],
     visibility = ["//visibility:public"],
 )
+
+filegroup(
+    name = "day_05",
+    srcs = [
+        "05.txt",
+        "05-test.txt",
+    ],
+    visibility = ["//visibility:public"],
+)

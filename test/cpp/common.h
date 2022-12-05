@@ -1,6 +1,7 @@
 #ifndef TEST_CPP_COMMON_H
 #define TEST_CPP_COMMON_H
 
+#include <ctype.h>
 #include <algorithm>
 #include <cctype>
 #include <cstdint>
@@ -140,6 +141,85 @@ GetSectionAssignmentsFromFile(const char* path) {
   }
 
   return section_assignment_pairs;
+}
+
+inline std::vector<std::vector<std::string>> GetSplittedCargoInputFromFile(
+    const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+  std::vector<std::vector<std::string>> cargo_input;
+  std::vector<std::string> crate_lines;
+
+  // crates
+  while (std::getline(infile, line) && !line.empty()) {
+    if (!line.empty() || line != "\n") {
+      crate_lines.push_back(line);
+    }
+  }
+
+  cargo_input.push_back(crate_lines);
+  crate_lines.clear();
+
+  // move set
+  while (std::getline(infile, line) && !line.empty()) {
+    if (!line.empty()) {
+      crate_lines.push_back(line);
+    }
+  }
+
+  cargo_input.push_back(crate_lines);
+  crate_lines.clear();
+
+  return cargo_input;
+}
+
+inline std::vector<std::stack<char>> GetCrates(
+    std::vector<std::string> crate_lines) {
+  std::vector<std::stack<char>> crates;
+
+  crates.resize(32);
+
+  const auto crate_indices_str = crate_lines.back();
+  std::vector<std::int32_t> crate_indices;
+
+  for (size_t i = 0; i < crate_indices_str.size(); i++) {
+    const auto current_element = crate_indices_str[i];
+    if (std::isdigit(current_element)) {
+      crate_indices.push_back(i);
+    }
+  }
+
+  crate_lines.pop_back();
+  for (auto it = crate_lines.end() - 1; it != crate_lines.begin() - 1; it--) {
+    const auto current_element = *it;
+    for (size_t i = 0; i < crate_indices.size(); i++) {
+      const auto crate_index = crate_indices[i];
+      const auto crate_char = current_element[crate_index];
+      if (crate_char != ' ') {
+        crates.at(i + 1).push(crate_char);
+      }
+    }
+  }
+
+  return crates;
+}
+
+inline std::vector<std::vector<std::int32_t>> GetCargoRearrangementProcedure(
+    std::vector<std::string> move_lines) {
+  std::vector<std::vector<std::int32_t>> procedures;
+
+  for (const auto& move_line : move_lines) {
+    std::vector<std::int32_t> procedure;
+    const auto tokens = SplitOn(move_line, ' ');
+    for (size_t i = 1; i < tokens.size(); i += 2) {
+      const auto value = std::stoi(tokens[i]);
+      procedure.push_back(value);
+    }
+
+    procedures.push_back(procedure);
+  }
+
+  return procedures;
 }
 
 }  // namespace helpers
