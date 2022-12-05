@@ -13,8 +13,7 @@ struct Day05Test : Test {
 
 TEST_F(Day05Test, Part01TestExample) {
   const auto splitted_input =
-      helpers::GetSplittedCargoInputFromFile("data/05-test.txt");
-
+      helpers::GetCargoInputFromFile("data/05-test.txt");
   const auto crate_input = helpers::GetCrates(splitted_input.at(0));
   const auto cargo_move_input =
       helpers::GetCargoRearrangementProcedure(splitted_input.at(1));
@@ -23,9 +22,7 @@ TEST_F(Day05Test, Part01TestExample) {
 }
 
 TEST_F(Day05Test, Part01RealExample) {
-  const auto splitted_input =
-      helpers::GetSplittedCargoInputFromFile("data/05.txt");
-
+  const auto splitted_input = helpers::GetCargoInputFromFile("data/05.txt");
   const auto crate_input = helpers::GetCrates(splitted_input.at(0));
   const auto cargo_move_input =
       helpers::GetCargoRearrangementProcedure(splitted_input.at(1));
@@ -35,8 +32,7 @@ TEST_F(Day05Test, Part01RealExample) {
 
 TEST_F(Day05Test, Part02TestExample) {
   const auto splitted_input =
-      helpers::GetSplittedCargoInputFromFile("data/05-test.txt");
-
+      helpers::GetCargoInputFromFile("data/05-test.txt");
   const auto crate_input = helpers::GetCrates(splitted_input.at(0));
   const auto cargo_move_input =
       helpers::GetCargoRearrangementProcedure(splitted_input.at(1));
@@ -45,9 +41,7 @@ TEST_F(Day05Test, Part02TestExample) {
 }
 
 TEST_F(Day05Test, Part02RealExample) {
-  const auto splitted_input =
-      helpers::GetSplittedCargoInputFromFile("data/05.txt");
-
+  const auto splitted_input = helpers::GetCargoInputFromFile("data/05.txt");
   const auto crate_input = helpers::GetCrates(splitted_input.at(0));
   const auto cargo_move_input =
       helpers::GetCargoRearrangementProcedure(splitted_input.at(1));

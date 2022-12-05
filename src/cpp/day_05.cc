@@ -1,7 +1,7 @@
 #include "day_05.h"
 
-#include <iostream>
 #include <queue>
+#include <string>
 
 namespace aoc2022 {
 namespace day05 {

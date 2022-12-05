@@ -143,7 +143,7 @@ GetSectionAssignmentsFromFile(const char* path) {
   return section_assignment_pairs;
 }
 
-inline std::vector<std::vector<std::string>> GetSplittedCargoInputFromFile(
+inline std::vector<std::vector<std::string>> GetCargoInputFromFile(
     const char* path) {
   std::ifstream infile(path);
   std::string line;
