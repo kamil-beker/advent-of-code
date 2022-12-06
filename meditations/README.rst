@@ -4,3 +4,4 @@
 4. `<day04.rst>`_
 5. `<day05.rst>`_
 5. `<day06.rst>`_
+5. `<day07.rst>`_
