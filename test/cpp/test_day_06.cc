@@ -12,23 +12,27 @@ struct Day06Test : Test {
 };
 
 TEST_F(Day06Test, Part01TestExample) {
-  std::vector<std::string> input;
-  ASSERT_EQ(aoc2022::day06::Part01(input), 0);
+  ASSERT_EQ(aoc2022::day06::Part01("bvwbjplbgvbhsrlpgdmjqwftvncz"), 5);
+  ASSERT_EQ(aoc2022::day06::Part01("nppdvjthqldpwncqszvftbrmjlhg"), 6);
+  ASSERT_EQ(aoc2022::day06::Part01("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10);
+  ASSERT_EQ(aoc2022::day06::Part01("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 11);
 }
 
 TEST_F(Day06Test, Part01RealExample) {
-  std::vector<std::string> input;
-  ASSERT_EQ(aoc2022::day06::Part01(input), 0);
+  const auto input = helpers::GetPacketFromFile("data/06.txt");
+  ASSERT_EQ(aoc2022::day06::Part01(input), 1850);
 }
 
 TEST_F(Day06Test, Part02TestExample) {
-  std::vector<std::string> input;
-  ASSERT_EQ(aoc2022::day06::Part02(input), 0);
+  ASSERT_EQ(aoc2022::day06::Part02("bvwbjplbgvbhsrlpgdmjqwftvncz"), 23);
+  ASSERT_EQ(aoc2022::day06::Part02("nppdvjthqldpwncqszvftbrmjlhg"), 23);
+  ASSERT_EQ(aoc2022::day06::Part02("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 29);
+  ASSERT_EQ(aoc2022::day06::Part02("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 26);
 }
 
 TEST_F(Day06Test, Part02RealExample) {
-  std::vector<std::string> input;
-  ASSERT_EQ(aoc2022::day06::Part02(input), 0);
+  const auto input = helpers::GetPacketFromFile("data/06.txt");
+  ASSERT_EQ(aoc2022::day06::Part02(input), 2823);
 }
 
 }  // namespace

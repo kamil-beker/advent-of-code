@@ -222,6 +222,15 @@ inline std::vector<std::vector<std::int32_t>> GetCargoRearrangementProcedure(
   return procedures;
 }
 
+inline std::string GetPacketFromFile(const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+
+  std::getline(infile, line);
+
+  return line;
+}
+
 }  // namespace helpers
 
 #endif  // TEST_CPP_COMMON_H
