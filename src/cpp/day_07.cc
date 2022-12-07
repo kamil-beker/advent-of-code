@@ -1,4 +1,5 @@
 #include "day_07.h"
+
 #include <algorithm>
 #include <cctype>
 #include <functional>
