@@ -231,6 +231,18 @@ inline std::string GetPacketFromFile(const char* path) {
   return line;
 }
 
+inline std::vector<std::string> GetTerminalOutput(const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+  std::vector<std::string> output;
+
+  while (std::getline(infile, line)) {
+    output.push_back(line);
+  }
+
+  return output;
+}
+
 }  // namespace helpers
 
 #endif  // TEST_CPP_COMMON_H
