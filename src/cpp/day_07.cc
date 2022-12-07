@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <cctype>
 #include <functional>
-#include <iostream>
 #include <numeric>
 #include <regex>
 
@@ -12,6 +11,7 @@ namespace day07 {
 namespace {
 const std::regex kCommandRegex("\\$\\s(cd)\\s{0,1}(.*)");
 const std::regex kFileEntryRegex("^(\\d*|dir)\\s([a-z]*\\.{0,1}[a-z]*)$");
+
 constexpr auto kTotalDiskSpace = 70000000;
 constexpr auto kUpdateSize = 30000000;
 }  // namespace
