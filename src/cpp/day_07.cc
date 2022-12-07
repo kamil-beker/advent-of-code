@@ -102,9 +102,7 @@ std::int64_t Part02(const std::vector<std::string>& data) {
   const auto root = *(std::find_if(directories.begin(), directories.end(),
                                    [](node* n) { return n->name == "/"; }));
   const auto total_used_space = root->size;
-  const auto total_disk_space = kTotalDiskSpace;
-  const auto space_to_free =
-      kUpdateSize - (total_disk_space - total_used_space);
+  const auto space_to_free = kUpdateSize - (kTotalDiskSpace - total_used_space);
 
   std::vector<std::int64_t> sizes;
   for (const auto dir : directories) {
