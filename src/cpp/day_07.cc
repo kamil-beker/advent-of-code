@@ -10,7 +10,7 @@ namespace aoc2022 {
 namespace day07 {
 
 namespace {
-const std::regex kCommandRegex("\\$\\s(cd)\\s{0,1}(.*)");
+const std::regex kCommandRegex("\\$\\s(cd|ls)\\s{0,1}(.*)");
 const std::regex kFileEntryRegex("^(\\d*|dir)\\s([a-z]*\\.{0,1}[a-z]*)$");
 
 constexpr auto kTotalDiskSpace = 70000000;
