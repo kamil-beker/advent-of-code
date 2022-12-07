@@ -12,7 +12,7 @@ namespace day07 {
 namespace {
 const std::regex kCommandRegex("\\$\\s(cd|ls)\\s{0,1}(.*)");
 const std::regex kFileEntryRegex("^(\\d*|dir)\\s([a-z]*\\.{0,1}[a-z]*)$");
-
+constexpr auto kUpperRange = 100000;
 constexpr auto kTotalDiskSpace = 70000000;
 constexpr auto kUpdateSize = 30000000;
 }  // namespace
@@ -88,7 +88,7 @@ std::int64_t Part01(const std::vector<std::string>& data) {
 
   result = std::accumulate(directories.begin(), directories.end(), 0,
                            [](int64_t acc, struct node* n) {
-                             if (n->size <= 100000) {
+                             if (n->size <= kUpperRange) {
                                return acc + n->size;
                              } else
                                return acc;
