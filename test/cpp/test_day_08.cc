@@ -12,19 +12,23 @@ struct Day08Test : Test {
 };
 
 TEST_F(Day08Test, Part01TestExample) {
-  ASSERT_EQ(aoc2022::day08::Part01(), 0);
+  const auto input = helpers::GetTreesFromFile("data/08-test.txt");
+  ASSERT_EQ(aoc2022::day08::Part01(input), 21);
 }
 
 TEST_F(Day08Test, Part01RealExample) {
-  ASSERT_EQ(aoc2022::day08::Part01(), 0);
+  const auto input = helpers::GetTreesFromFile("data/08.txt");
+  ASSERT_EQ(aoc2022::day08::Part01(input), 1679);
 }
 
 TEST_F(Day08Test, Part02TestExample) {
-  ASSERT_EQ(aoc2022::day08::Part02(), 0);
+  const auto input = helpers::GetTreesFromFile("data/08-test.txt");
+  ASSERT_EQ(aoc2022::day08::Part02(input), 8);
 }
 
 TEST_F(Day08Test, Part02RealExample) {
-  ASSERT_EQ(aoc2022::day08::Part02(), 0);
+  const auto input = helpers::GetTreesFromFile("data/08.txt");
+  ASSERT_EQ(aoc2022::day08::Part02(input), 536625);
 }
 
 }  // namespace

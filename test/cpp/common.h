@@ -243,6 +243,28 @@ inline std::vector<std::string> GetTerminalOutput(const char* path) {
   return output;
 }
 
+inline std::vector<std::vector<std::int32_t>> GetTreesFromFile(
+    const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+  std::vector<std::vector<std::int32_t>> trees;
+
+  trees.resize(256);
+
+  size_t index = 0;
+  while (std::getline(infile, line)) {
+    for (auto ch : line) {
+      const std::int32_t height = static_cast<int>(ch) - 48;
+      trees.at(index).push_back(height);
+    }
+    ++index;
+  }
+
+  trees.resize(index);
+
+  return trees;
+}
+
 }  // namespace helpers
 
 #endif  // TEST_CPP_COMMON_H
