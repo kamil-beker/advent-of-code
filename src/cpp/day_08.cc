@@ -15,7 +15,6 @@ std::int64_t Part01(const std::vector<std::vector<std::int32_t>>& data) {
 
   for (auto i = 1; i < rows_size - 1; ++i) {
     for (auto j = 1; j < columns_size - 1; ++j) {
-      std::vector<bool> visibility;
       const auto current_tree = data[i][j];
 
       const auto horizontal_visibility = [&](std::int32_t from, std::int32_t to,
@@ -51,15 +50,8 @@ std::int64_t Part01(const std::vector<std::vector<std::int32_t>>& data) {
       const bool is_visible_from_bottom =
           vertical_visibility(i, rows_size - 1, 1);
 
-      visibility.push_back(is_visible_from_left);
-      visibility.push_back(is_visible_from_right);
-      visibility.push_back(is_visible_from_top);
-      visibility.push_back(is_visible_from_bottom);
-
-      const bool check = std::any_of(visibility.begin(), visibility.end(),
-                                     [](const bool b) { return b; });
-
-      result += check;
+      result += (is_visible_from_left || is_visible_from_right ||
+                 is_visible_from_top || is_visible_from_bottom);
     }
   }
 
@@ -76,7 +68,6 @@ std::int64_t Part02(const std::vector<std::vector<std::int32_t>>& data) {
 
   for (auto i = 1; i < rows_size - 1; ++i) {
     for (auto j = 1; j < columns_size - 1; ++j) {
-      std::vector<std::int32_t> distances;
       const auto current_tree = data[i][j];
 
       const auto horizontal_distance = [&](std::int32_t from, std::int32_t to,
@@ -91,7 +82,6 @@ std::int64_t Part02(const std::vector<std::vector<std::int32_t>>& data) {
             break;
           }
         }
-
         return distance;
       };
 
@@ -107,7 +97,6 @@ std::int64_t Part02(const std::vector<std::vector<std::int32_t>>& data) {
             break;
           }
         }
-
         return distance;
       };
 
@@ -117,19 +106,8 @@ std::int64_t Part02(const std::vector<std::vector<std::int32_t>>& data) {
       const auto up_distance = vertical_distance(i, 0, -1);
       const auto down_distance = vertical_distance(i, rows_size - 1, 1);
 
-      distances.push_back(left_distance);
-      distances.push_back(right_distance);
-      distances.push_back(up_distance);
-      distances.push_back(down_distance);
-
-      distances.erase(std::remove(distances.begin(), distances.end(), 0),
-                      distances.end());
-
-      const auto scenic_score = std::accumulate(
-          distances.begin(), distances.end(), 1,
-          [](std::int32_t acc, std::int32_t score) { return acc * score; });
-
-      scenic_scores.push_back(scenic_score);
+      scenic_scores.push_back(left_distance * right_distance * up_distance *
+                              down_distance);
     }
 
     std::nth_element(scenic_scores.begin(), scenic_scores.begin() + 1,
