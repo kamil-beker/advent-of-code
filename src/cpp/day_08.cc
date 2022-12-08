@@ -100,7 +100,6 @@ std::int64_t Part02(const std::vector<std::vector<std::int32_t>>& data) {
         return distance;
       };
 
-      // go left
       const auto left_distance = horizontal_distance(j, 0, -1);
       const auto right_distance = horizontal_distance(j, columns_size - 1, 1);
       const auto up_distance = vertical_distance(i, 0, -1);
