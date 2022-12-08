@@ -61,7 +61,7 @@ std::int64_t Part01(const std::vector<std::vector<std::int32_t>>& data) {
 }
 
 std::int64_t Part02(const std::vector<std::vector<std::int32_t>>& data) {
-  std::vector<std::int64_t> scenic_scores;
+  std::int64_t max_scenic_score = 0;
 
   const std::int32_t rows_size = data.size();
   const std::int32_t columns_size = data.at(0).size();
@@ -106,15 +106,16 @@ std::int64_t Part02(const std::vector<std::vector<std::int32_t>>& data) {
       const auto up_distance = vertical_distance(i, 0, -1);
       const auto down_distance = vertical_distance(i, rows_size - 1, 1);
 
-      scenic_scores.push_back(left_distance * right_distance * up_distance *
-                              down_distance);
-    }
+      const auto scenic_score =
+          left_distance * right_distance * up_distance * down_distance;
 
-    std::nth_element(scenic_scores.begin(), scenic_scores.begin() + 1,
-                     scenic_scores.end(), std::greater<int>());
+      if (scenic_score > max_scenic_score) {
+        max_scenic_score = scenic_score;
+      }
+    }
   }
 
-  return scenic_scores.at(0);
+  return max_scenic_score;
 }
 
 }  // namespace day08
