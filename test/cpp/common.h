@@ -265,6 +265,32 @@ inline std::vector<std::vector<std::int32_t>> GetTreesFromFile(
   return trees;
 }
 
+inline std::vector<std::pair<char, std::int32_t>> GetSeriesOfMotionsFromFIle(
+    const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+  std::vector<std::pair<char, std::int32_t>> motions;
+
+  while (std::getline(infile, line)) {
+    std::pair<char, std::int32_t> motion;
+    std::istringstream iss(line);
+    std::string direction_str;
+    std::string steps_str;
+
+    iss >> direction_str;
+    iss >> steps_str;
+
+    const char direction = direction_str[0];
+    const std::int32_t steps = std::stoi(steps_str);
+
+    motion = std::make_pair(direction, steps);
+
+    motions.push_back(motion);
+  }
+
+  return motions;
+}
+
 }  // namespace helpers
 
 #endif  // TEST_CPP_COMMON_H

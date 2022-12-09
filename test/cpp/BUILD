@@ -99,3 +99,15 @@ cc_test(
         "@googletest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "test_day_09",
+    srcs = ["test_day_09.cc"],
+    data = ["//data:day_09"],
+    deps = [
+        ":common",
+        "//src/cpp:day_09",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
