@@ -3,10 +3,15 @@
 #include <array>
 #include <cmath>
 #include <iostream>
+#include <map>
 #include <set>
 
 namespace aoc2022 {
 namespace day09 {
+
+int sgn(int val) {
+  return (val > 0) - (val < 0);
+}
 
 std::pair<std::int32_t, std::int32_t> ConvertDirectionAndSteps(
     char direction,
@@ -35,109 +40,46 @@ std::pair<std::int32_t, std::int32_t> ConvertDirectionAndSteps(
 };
 
 std::int64_t Part01(const std::vector<std::pair<char, std::int32_t>>& data) {
-  std::set<std::pair<std::int32_t, std::int32_t>> path;
+  std::pair<std::int32_t, std::int32_t> head{0, 0};
+  std::pair<std::int32_t, std::int32_t> tail{0, 0};
 
-  std::int64_t x_coordinate = 0;
-  std::int64_t y_coordinate = 0;
-  std::int64_t x_tail_coordinate = 0;
-  std::int64_t y_tail_coordinate = 0;
-
-  const auto update_tail_coordinates = [&]() {
-    struct {
-      int dx;
-      int dy;
-    } vertical_directions[] = {{0, -2}, {-2, 0}, {0, 2}, {2, 0}};
-
-    struct {
-      int dx;
-      int dy;
-    } diagonal_directions[] = {{-1, -2}, {-2, -1}, {-2, 1}, {-1, 2},
-                               {1, 2},   {2, 1},   {2, -1}, {1, -2}};
-
-    // check vertical
-    for (auto i = 0; i < 4; ++i) {
-      std::int64_t temp_x = x_tail_coordinate + vertical_directions[i].dx;
-      std::int64_t temp_y = y_tail_coordinate + vertical_directions[i].dy;
-
-      if (temp_x == x_coordinate && temp_y == y_coordinate) {
-        if (temp_x < x_tail_coordinate) {
-          x_tail_coordinate -= 1;
-        }
-        if (temp_x > x_tail_coordinate) {
-          x_tail_coordinate += 1;
-        }
-        if (temp_y > y_tail_coordinate) {
-          y_tail_coordinate += 1;
-        }
-        if (temp_y < y_tail_coordinate) {
-          y_tail_coordinate -= 1;
-        }
-      }
-    }
-
-    // check for diagonal
-    for (auto i = 0; i < 8; i++) {
-      std::int64_t temp_x = x_tail_coordinate + diagonal_directions[i].dx;
-      std::int64_t temp_y = y_tail_coordinate + diagonal_directions[i].dy;
-      if (temp_x == x_coordinate && temp_y == y_coordinate) {
-        if (temp_x < x_tail_coordinate && temp_y > y_tail_coordinate) {
-          x_tail_coordinate -= 1;
-          y_tail_coordinate += 1;
-        }
-        if (temp_x > x_tail_coordinate && temp_y > y_tail_coordinate) {
-          x_tail_coordinate += 1;
-          y_tail_coordinate += 1;
-        }
-        if (temp_x > x_tail_coordinate && temp_y < y_tail_coordinate) {
-          x_tail_coordinate += 1;
-          y_tail_coordinate -= 1;
-        }
-        if (temp_x < x_tail_coordinate && temp_y < y_tail_coordinate) {
-          x_tail_coordinate -= 1;
-          y_tail_coordinate -= 1;
-        }
-      }
-    }
+  std::set<std::pair<std::int32_t, std::int32_t>> set;
+  std::map<char, std::pair<std::int32_t, std::int32_t>> dir_map = {
+      {'U', {0, 1}},
+      {'D', {0, -1}},
+      {'L', {-1, 0}},
+      {'R', {1, 0}},
   };
 
-  auto it = data.begin();
-  while (it != data.end()) {
+  const auto add_pair = [](std::pair<std::int32_t, std::int32_t> p_1,
+                           std::pair<std::int32_t, std::int32_t> p_2) {
+    std::pair<std::int32_t, std::int32_t> p_sum{p_1.first + p_2.first,
+                                                p_1.second + p_2.second};
+
+    return p_sum;
+  };
+
+  set.insert(tail);
+
+  for (auto it = data.begin(); it != data.end(); ++it) {
     const auto direction = it->first;
     const auto steps = it->second;
-    const auto move = ConvertDirectionAndSteps(direction, steps);
-    const auto move_x = move.second;
-    const auto move_y = move.first;
 
-    if (move_x == 0) {
-      for (auto i = 0; i < std::abs(move_y); ++i) {
-        std::pair<std::int32_t, std::int32_t> move;
-        if (!std::signbit(move_y)) {
-          y_coordinate += 1;
-        } else {
-          y_coordinate -= 1;
-        }
-        update_tail_coordinates();
-        move = std::make_pair(x_tail_coordinate, y_tail_coordinate);
-        path.insert(move);
-      }
-    } else {
-      for (auto i = 0; i < std::abs(move_x); ++i) {
-        std::pair<std::int32_t, std::int32_t> move;
-        if (!std::signbit(move_x)) {
-          x_coordinate += 1;
-        } else {
-          x_coordinate -= 1;
-        }
-        update_tail_coordinates();
-        move = std::make_pair(x_tail_coordinate, y_tail_coordinate);
-        path.insert(move);
+    auto x = dir_map[direction];
+    for (auto i = 0; i < steps; i++) {
+      head = add_pair(head, x);
+      const auto dx = head.first - tail.first;
+      const auto dy = head.second - tail.second;
+
+      if (std::abs(dx) > 1 || std::abs(dy) > 1) {
+        std::pair<std::int32_t, std::int32_t> dxy_1{sgn(dx), sgn(dy)};
+        tail = add_pair(tail, dxy_1);
+        set.insert(tail);
       }
     }
-
-    ++it;
   }
 
-  return path.size();
+  return set.size();
 }
 
 std::int64_t Part02(const std::vector<std::pair<char, std::int32_t>>& data) {
