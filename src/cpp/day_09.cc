@@ -1,8 +1,5 @@
 #include "day_09.h"
 
-#include <array>
-#include <cmath>
-#include <iostream>
 #include <map>
 #include <set>
 
