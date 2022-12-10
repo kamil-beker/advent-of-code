@@ -13,7 +13,7 @@ struct Day09Test : Test {
 
 TEST_F(Day09Test, Part01TestExample) {
   const auto input = helpers::GetSeriesOfMotionsFromFIle("data/09-test.txt");
-  ASSERT_EQ(aoc2022::day09::Part01(input), 13);
+  ASSERT_EQ(aoc2022::day09::Part01(input), 88);
 }
 
 TEST_F(Day09Test, Part01RealExample) {
@@ -23,12 +23,12 @@ TEST_F(Day09Test, Part01RealExample) {
 
 TEST_F(Day09Test, Part02TestExample) {
   const auto input = helpers::GetSeriesOfMotionsFromFIle("data/09-test.txt");
-  ASSERT_EQ(aoc2022::day09::Part02(input), 0);
+  ASSERT_EQ(aoc2022::day09::Part02(input), 36);
 }
 
 TEST_F(Day09Test, Part02RealExample) {
-  const auto input = helpers::GetSeriesOfMotionsFromFIle("data/09-test.txt");
-  ASSERT_EQ(aoc2022::day09::Part02(input), 0);
+  const auto input = helpers::GetSeriesOfMotionsFromFIle("data/09.txt");
+  ASSERT_EQ(aoc2022::day09::Part02(input), 2597);
 }
 
 }  // namespace
