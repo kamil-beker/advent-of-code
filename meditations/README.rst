@@ -6,3 +6,5 @@
 5. `<day06.rst>`_
 5. `<day07.rst>`_
 5. `<day08.rst>`_
+5. `<day09.rst>`_
+5. `<day10.rst>`_

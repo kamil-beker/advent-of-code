@@ -291,6 +291,34 @@ inline std::vector<std::pair<char, std::int32_t>> GetSeriesOfMotionsFromFIle(
   return motions;
 }
 
+inline std::vector<std::pair<std::string, std::int32_t>> GetProgramDataFromFile(
+    const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+  std::vector<std::pair<std::string, std::int32_t>> program_data;
+
+  while (std::getline(infile, line)) {
+    std::pair<std::string, std::int32_t> instruction;
+    std::istringstream iss(line);
+
+    std::string instruction_type = "";
+    std::string register_value_str = "";
+    std::int32_t register_value = 0;
+
+    iss >> instruction_type;
+    iss >> register_value_str;
+
+    if (!register_value_str.empty()) {
+      register_value = std::stoi(register_value_str);
+    }
+
+    instruction = std::make_pair(instruction_type, register_value);
+    program_data.push_back(instruction);
+  }
+
+  return program_data;
+}
+
 }  // namespace helpers
 
 #endif  // TEST_CPP_COMMON_H

@@ -105,3 +105,15 @@ cc_library(
     ],
     visibility = ["//visibility:public"],
 )
+
+cc_library(
+    name = "day_10",
+    srcs = [
+        "day_10.cc",
+        "day_10.h",
+    ],
+    data = [
+        "//data:day_10",
+    ],
+    visibility = ["//visibility:public"],
+)
