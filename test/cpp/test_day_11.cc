@@ -1,0 +1,30 @@
+#include <gtest/gtest.h>
+
+#include "common.h"
+#include "src/cpp/day_11.h"
+
+using ::testing::Test;
+
+namespace {
+struct Day11Test : Test {
+  // void SetUp() override {};
+  // void TearDown() override {};
+};
+
+TEST_F(Day11Test, Part01TestExample) {
+  ASSERT_EQ(aoc2022::day11::Part01(), 0);
+}
+
+TEST_F(Day11Test, Part01RealExample) {
+  ASSERT_EQ(aoc2022::day11::Part01(), 0);
+}
+
+TEST_F(Day11Test, Part02TestExample) {
+  ASSERT_EQ(aoc2022::day11::Part02(), 0);
+}
+
+TEST_F(Day11Test, Part02RealExample) {
+  ASSERT_EQ(aoc2022::day11::Part02(), 0);
+}
+
+}  // namespace
