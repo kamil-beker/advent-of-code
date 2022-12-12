@@ -8,8 +8,8 @@
 namespace aoc2022 {
 namespace day11 {
 
-std::int64_t Part01(/* data */);
-std::int64_t Part02(/* data */);
+std::int64_t Part01(const std::vector<std::string>& data, std::int64_t rounds);
+std::int64_t Part02(const std::vector<std::string>& data, std::int64_t rounds);
 
 }  // namespace day11
 }  // namespace aoc2022

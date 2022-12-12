@@ -319,6 +319,26 @@ inline std::vector<std::pair<std::string, std::int32_t>> GetProgramDataFromFile(
   return program_data;
 }
 
+inline std::vector<std::string> GetMonkeyRawDataFromFile(const char* path) {
+  std::ifstream infile(path);
+  std::string line;
+  std::string monkey_raw_data;
+  std::vector<std::string> monkeys_raw_data;
+  while (std::getline(infile, line)) {
+    if (!line.empty()) {
+      monkey_raw_data += line;
+      monkey_raw_data += '\n';
+    } else {
+      monkeys_raw_data.push_back(monkey_raw_data);
+      monkey_raw_data.clear();
+    }
+  }
+
+  monkeys_raw_data.push_back(monkey_raw_data);
+
+  return monkeys_raw_data;
+}
+
 }  // namespace helpers
 
 #endif  // TEST_CPP_COMMON_H

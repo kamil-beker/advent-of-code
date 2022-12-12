@@ -12,19 +12,23 @@ struct Day11Test : Test {
 };
 
 TEST_F(Day11Test, Part01TestExample) {
-  ASSERT_EQ(aoc2022::day11::Part01(), 0);
+  const auto input = helpers::GetMonkeyRawDataFromFile("data/11-test.txt");
+  ASSERT_EQ(aoc2022::day11::Part01(input, 20), 10605);
 }
 
 TEST_F(Day11Test, Part01RealExample) {
-  ASSERT_EQ(aoc2022::day11::Part01(), 0);
+  const auto input = helpers::GetMonkeyRawDataFromFile("data/11.txt");
+  ASSERT_EQ(aoc2022::day11::Part01(input, 10000), 14396280220);
 }
 
 TEST_F(Day11Test, Part02TestExample) {
-  ASSERT_EQ(aoc2022::day11::Part02(), 0);
+  const auto input = helpers::GetMonkeyRawDataFromFile("data/11-test.txt");
+  ASSERT_EQ(aoc2022::day11::Part02(input, 10000), 2713310158);
 }
 
 TEST_F(Day11Test, Part02RealExample) {
-  ASSERT_EQ(aoc2022::day11::Part02(), 0);
+  const auto input = helpers::GetMonkeyRawDataFromFile("data/11.txt");
+  ASSERT_EQ(aoc2022::day11::Part02(input, 10000), 11741456163);
 }
 
 }  // namespace
